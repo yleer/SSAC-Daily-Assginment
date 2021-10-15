@@ -13,6 +13,8 @@ class ListTableViewCell: UITableViewCell {
     @IBOutlet weak var checkBoxButton: UIButton!
     @IBOutlet weak var shoppingContentList: UILabel!
     
+    var cellDelegate: YourCellDelegate?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
        
@@ -24,16 +26,23 @@ class ListTableViewCell: UITableViewCell {
     }
 
     
-    @IBAction func likeButtonClicked(_ sender: Any) {
-//        if like{
-//            like = false
-//        }else{
-//            like = true
-//        }
-//        print(like)
+    
+    @IBAction func likeButtonClicked(_ sender: UIButton) {
+        cellDelegate?.didPressButton(sender.tag)
     }
     
+//    @IBAction func likeButtonClicked(_ sender: Any) {
+////        if like{
+////            like = false
+////        }else{
+////            like = true
+////        }
+////        print(like)
+//        cellDelegate?.didPressButton(sender.tag)
+//    }
+    
     @IBAction func checkButtonClicked(_ sender: UIButton) {
+        cellDelegate?.didPressButton(sender.tag)
 //        if check{
 //            check = false
 //        }else{

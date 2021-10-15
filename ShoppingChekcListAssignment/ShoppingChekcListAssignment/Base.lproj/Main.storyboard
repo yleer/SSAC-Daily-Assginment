@@ -81,7 +81,7 @@
                                                         <constraint firstAttribute="width" secondItem="wcd-9l-Dtc" secondAttribute="height" multiplier="1:1" id="3RS-ch-8QO"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="rectangle.portrait.and.arrow.right" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="checkmark.square" catalog="system"/>
                                                     <connections>
                                                         <action selector="checkButtonClicked:" destination="jcg-aL-cy0" eventType="touchUpInside" id="Cl1-9y-Efr"/>
                                                     </connections>
@@ -98,9 +98,9 @@
                                                         <constraint firstAttribute="width" secondItem="a09-aA-Rpw" secondAttribute="height" id="yQX-5D-mac"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up.fill" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="star" catalog="system"/>
                                                     <connections>
-                                                        <action selector="likeButtonClicked:" destination="jcg-aL-cy0" eventType="touchUpInside" id="G3x-9G-AuK"/>
+                                                        <action selector="likeButtonClicked:" destination="jcg-aL-cy0" eventType="touchUpInside" id="az2-ov-BTI"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -170,9 +170,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkmark.square" catalog="system" width="128" height="114"/>
         <image name="plus" catalog="system" width="128" height="113"/>
-        <image name="rectangle.portrait.and.arrow.right" catalog="system" width="128" height="108"/>
-        <image name="square.and.arrow.up.fill" catalog="system" width="115" height="128"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

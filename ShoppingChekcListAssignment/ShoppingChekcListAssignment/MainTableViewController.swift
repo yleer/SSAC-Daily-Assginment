@@ -7,7 +7,34 @@
 
 import UIKit
 
-class MainTableViewController: UITableViewController {
+
+protocol YourCellDelegate  {
+    func didPressButton(_ tag: Int)
+}
+
+
+class MainTableViewController: UITableViewController, YourCellDelegate {
+    func didPressButton(_ tag: Int) {
+        
+//        print(shoppingListArray)
+        // check button pressed
+        if tag % 2 == 0 {
+            let row = tag / 2
+//            print(row)
+            shoppingListArray[row].check = !shoppingListArray[row].check
+
+        }else{
+            // like button pressed.
+            let row = (tag - 1) / 2
+//            print(row)
+            shoppingListArray[row].bookMark = !shoppingListArray[row].bookMark
+        }
+
+    }
+    
+    var selectedCheck : [Int] = []
+    var selectedBooked : [Int] = []
+    
     //    list cell
     
     @IBOutlet weak var shoppingTextField: UITextField!
@@ -26,7 +53,7 @@ class MainTableViewController: UITableViewController {
         super.viewDidLoad()
         loadData()
         headerContainerView.layer.cornerRadius = 20
-        
+        print(shoppingListArray)
         addButton.layer.cornerRadius = 20
         
     }
@@ -87,50 +114,39 @@ class MainTableViewController: UITableViewController {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "list cell", for: indexPath) as? ListTableViewCell else{
             return UITableViewCell()
         }
+        if shoppingListArray[indexPath.row].bookMark{
+            selectedBooked.append(indexPath.row)
+            cell.starButton.imageView?.image = UIImage(systemName: "star.fill")
+        }else{
+            if let a = selectedBooked.firstIndex(of: indexPath.row){
+                selectedBooked.remove(at: a)
+            }
+            cell.starButton.imageView?.image = UIImage(systemName: "star")
+        }
+
+        if shoppingListArray[indexPath.row].check{
+            selectedCheck.append(indexPath.row)
+            cell.checkBoxButton.imageView?.image = UIImage(systemName: "checkmark.square.fill")
+        }else{
+            if let a = selectedCheck.firstIndex(of: indexPath.row){
+                selectedCheck.remove(at: a)
+            }
+            cell.checkBoxButton.imageView?.image = UIImage(systemName: "checkmark.square")
+        }
+    
+        
         cell.containerView.layer.cornerRadius = 10
         cell.shoppingContentList.text = shoppingListArray[indexPath.row].content
         
-        
-        cell.checkBoxButton.tag = indexPath.row * 2
-        cell.starButton.tag = indexPath.row * 2 + 1
-        
-//        cell.checkBoxButton.addTarget(self, action: #selector(whichButtonPressed(sender:)), for: .touchUpInside)
-        cell.checkBoxButton.addTarget(self, action: #selector(whichButtonPressed(sender:)), for: .touchUpInside)
+        cell.cellDelegate = self
+        cell.checkBoxButton.tag = indexPath.row
+        cell.starButton.tag = indexPath.row
         
         
-        cell.starButton.addTarget(self, action: #selector(whichButtonPressed(sender:)), for: .touchUpInside)
         
-        
-        if shoppingListArray[indexPath.row].bookMark{
-            
-            cell.starButton.imageView?.image = UIImage(systemName: "star.fill")
-        }else{
-            cell.starButton.imageView?.image = UIImage(systemName: "star")
-        }
-        
-        if shoppingListArray[indexPath.row].check{
-            cell.checkBoxButton.imageView?.image = UIImage(systemName: "checkmark.square.fill")
-        }else{
-            cell.checkBoxButton.imageView?.image = UIImage(systemName: "checkmark.square")
-        }
-        
+
         return cell
     }
-    
-    @objc func whichButtonPressed(sender: UIButton) {
-        let buttonNumber = sender.tag
-        
-        if buttonNumber % 2 == 0{
-            let row = buttonNumber / 2
-            shoppingListArray[row].check = !shoppingListArray[row].check
-            tableView.reloadData()
-        }else{
-            let row = (buttonNumber - 1) / 2
-            shoppingListArray[row].bookMark = !shoppingListArray[row].bookMark
-            tableView.reloadData()
-        }
-    }
-    
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
