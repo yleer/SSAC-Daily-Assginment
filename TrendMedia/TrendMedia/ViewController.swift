@@ -55,7 +55,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
         
         let row = movies[indexPath.row]
-            
+        
+        cell.containerView.layer.borderColor = UIColor.gray.cgColor
+        cell.containerView.layer.borderWidth = 1
         cell.genereLabel.text = "#" + row.genre
         cell.englishTitleLabel.text = row.title
         cell.koreanTitleLabel.text = row.title
