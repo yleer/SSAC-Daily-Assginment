@@ -9,8 +9,6 @@ import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
    
-    
-
     let movies = tvShow
     
     @IBOutlet weak var movieTableView: UITableView!
@@ -19,9 +17,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
         movieTableView.dataSource = self
         movieTableView.delegate = self
+
     }
 
-    
     
     @IBAction func infoButtonClicked(_ sender: UIBarButtonItem) {
         
@@ -44,6 +42,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
+        vc.program = movies[indexPath.row]
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -63,6 +62,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.koreanTitleLabel.text = row.title
         cell.dateLabel.text = row.releaseDate
         cell.posterImage.image = UIImage(named: row.title)
+        cell.toMovieWeb.tag = indexPath.row
+        cell.toMovieWeb.addTarget(self, action: #selector(segueToWeb), for: .touchUpInside)
         
         cell.posterImage.layer.cornerRadius = 10
         cell.containerView.layer.cornerRadius = 10
@@ -72,6 +73,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         400
+    }
+    
+    @objc func segueToWeb(_ sender : UIButton){
+        let movieData = movies[sender.tag]
+        
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "MovieWebViewControlle") as! MovieWebViewControlle
+        vc.movieData = movieData
+        present(vc, animated: true, completion: nil)
     }
 }
 

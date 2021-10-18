@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		88BBAE26271D3815008D77FB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 88BBAE25271D3815008D77FB /* Kingfisher */; };
+		88BBAE28271D3E7D008D77FB /* MovieWebViewControlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */; };
 		88C1635727194A7A00BDB092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1635627194A7A00BDB092 /* AppDelegate.swift */; };
 		88C1635927194A7A00BDB092 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1635827194A7A00BDB092 /* SceneDelegate.swift */; };
 		88C1635B27194A7A00BDB092 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1635A27194A7A00BDB092 /* ViewController.swift */; };
@@ -20,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWebViewControlle.swift; sourceTree = "<group>"; };
 		88C1635327194A7A00BDB092 /* TrendMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrendMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C1635627194A7A00BDB092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		88C1635827194A7A00BDB092 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88BBAE26271D3815008D77FB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,6 +73,7 @@
 				88C1635A27194A7A00BDB092 /* ViewController.swift */,
 				88C1636E27195A4800BDB092 /* SearchViewController.swift */,
 				88C1635C27194A7A00BDB092 /* Main.storyboard */,
+				88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */,
 				88C163702719674D00BDB092 /* InfoViewController.swift */,
 				88C1636A27194F4200BDB092 /* MovieTableViewCell.swift */,
 				88C1635F27194A7D00BDB092 /* Assets.xcassets */,
@@ -95,6 +100,9 @@
 			dependencies = (
 			);
 			name = TrendMedia;
+			packageProductDependencies = (
+				88BBAE25271D3815008D77FB /* Kingfisher */,
+			);
 			productName = TrendMedia;
 			productReference = 88C1635327194A7A00BDB092 /* TrendMedia.app */;
 			productType = "com.apple.product-type.application";
@@ -123,6 +131,9 @@
 				Base,
 			);
 			mainGroup = 88C1634A27194A7A00BDB092;
+			packageReferences = (
+				88BBAE24271D3815008D77FB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 88C1635427194A7A00BDB092 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -151,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88C1636F27195A4800BDB092 /* SearchViewController.swift in Sources */,
+				88BBAE28271D3E7D008D77FB /* MovieWebViewControlle.swift in Sources */,
 				88C1636D2719506700BDB092 /* Sample.swift in Sources */,
 				88C1635B27194A7A00BDB092 /* ViewController.swift in Sources */,
 				88C163712719674D00BDB092 /* InfoViewController.swift in Sources */,
@@ -374,6 +386,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		88BBAE24271D3815008D77FB /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		88BBAE25271D3815008D77FB /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88BBAE24271D3815008D77FB /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 88C1634B27194A7A00BDB092 /* Project object */;
 }

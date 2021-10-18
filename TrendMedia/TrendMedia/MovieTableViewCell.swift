@@ -11,6 +11,7 @@ class MovieTableViewCell: UITableViewCell {
 
     
    
+    @IBOutlet weak var toMovieWeb: UIButton!
     @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var genereLabel: UILabel!
