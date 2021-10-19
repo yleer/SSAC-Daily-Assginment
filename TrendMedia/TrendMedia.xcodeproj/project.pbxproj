@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8833C562271EE9C200F4A148 /* BookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833C561271EE9C200F4A148 /* BookViewController.swift */; };
+		8833C564271EEB0D00F4A148 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833C563271EEB0D00F4A148 /* BookCollectionViewCell.swift */; };
 		88BBAE26271D3815008D77FB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 88BBAE25271D3815008D77FB /* Kingfisher */; };
 		88BBAE28271D3E7D008D77FB /* MovieWebViewControlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */; };
 		88C1635727194A7A00BDB092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1635627194A7A00BDB092 /* AppDelegate.swift */; };
@@ -22,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8833C561271EE9C200F4A148 /* BookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookViewController.swift; sourceTree = "<group>"; };
+		8833C563271EEB0D00F4A148 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWebViewControlle.swift; sourceTree = "<group>"; };
 		88C1635327194A7A00BDB092 /* TrendMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrendMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C1635627194A7A00BDB092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -69,10 +73,12 @@
 			isa = PBXGroup;
 			children = (
 				88C1635627194A7A00BDB092 /* AppDelegate.swift */,
+				8833C561271EE9C200F4A148 /* BookViewController.swift */,
 				88C1635827194A7A00BDB092 /* SceneDelegate.swift */,
 				88C1635A27194A7A00BDB092 /* ViewController.swift */,
 				88C1636E27195A4800BDB092 /* SearchViewController.swift */,
 				88C1635C27194A7A00BDB092 /* Main.storyboard */,
+				8833C563271EEB0D00F4A148 /* BookCollectionViewCell.swift */,
 				88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */,
 				88C163702719674D00BDB092 /* InfoViewController.swift */,
 				88C1636A27194F4200BDB092 /* MovieTableViewCell.swift */,
@@ -164,9 +170,11 @@
 				88C1636F27195A4800BDB092 /* SearchViewController.swift in Sources */,
 				88BBAE28271D3E7D008D77FB /* MovieWebViewControlle.swift in Sources */,
 				88C1636D2719506700BDB092 /* Sample.swift in Sources */,
+				8833C564271EEB0D00F4A148 /* BookCollectionViewCell.swift in Sources */,
 				88C1635B27194A7A00BDB092 /* ViewController.swift in Sources */,
 				88C163712719674D00BDB092 /* InfoViewController.swift in Sources */,
 				88C1635727194A7A00BDB092 /* AppDelegate.swift in Sources */,
+				8833C562271EE9C200F4A148 /* BookViewController.swift in Sources */,
 				88C1636B27194F4200BDB092 /* MovieTableViewCell.swift in Sources */,
 				88C1635927194A7A00BDB092 /* SceneDelegate.swift in Sources */,
 			);

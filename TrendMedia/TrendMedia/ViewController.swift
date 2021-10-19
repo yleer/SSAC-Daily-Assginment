@@ -33,6 +33,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         present(vc, animated: true, completion: nil)
         
     }
+    @IBAction func presentBookVCbutton(_ sender: UIButton) {
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
+        vc.data = movies
+        navigationController?.pushViewController(vc, animated: true)
+        
+    }
     
     // MARK: table view part.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -14,7 +14,7 @@ class MovieWebViewControlle: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(movieData)
+//        print(movieData)
     }
     
 
