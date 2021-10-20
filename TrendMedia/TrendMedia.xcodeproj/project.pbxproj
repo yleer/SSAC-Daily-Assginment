@@ -11,6 +11,7 @@
 		8833C564271EEB0D00F4A148 /* BookCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8833C563271EEB0D00F4A148 /* BookCollectionViewCell.swift */; };
 		88639370271FE1370016995F /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8863936F271FE1370016995F /* LocationViewController.swift */; };
 		88639372271FFDCC0016995F /* TheaterLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88639371271FFDCC0016995F /* TheaterLocations.swift */; };
+		88A7EC26272054D3004D2AFD /* OverviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A7EC25272054D3004D2AFD /* OverviewTableViewCell.swift */; };
 		88BBAE26271D3815008D77FB /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 88BBAE25271D3815008D77FB /* Kingfisher */; };
 		88BBAE28271D3E7D008D77FB /* MovieWebViewControlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */; };
 		88C1635727194A7A00BDB092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1635627194A7A00BDB092 /* AppDelegate.swift */; };
@@ -23,7 +24,6 @@
 		88C1636D2719506700BDB092 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1636C2719506700BDB092 /* Sample.swift */; };
 		88C1636F27195A4800BDB092 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1636E27195A4800BDB092 /* SearchViewController.swift */; };
 		88C163712719674D00BDB092 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C163702719674D00BDB092 /* InfoViewController.swift */; };
-		88CCC97C271F9F5900A21567 /* InfoContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88CCC97B271F9F5900A21567 /* InfoContentTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +31,7 @@
 		8833C563271EEB0D00F4A148 /* BookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionViewCell.swift; sourceTree = "<group>"; };
 		8863936F271FE1370016995F /* LocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		88639371271FFDCC0016995F /* TheaterLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheaterLocations.swift; sourceTree = "<group>"; };
+		88A7EC25272054D3004D2AFD /* OverviewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTableViewCell.swift; sourceTree = "<group>"; };
 		88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieWebViewControlle.swift; sourceTree = "<group>"; };
 		88C1635327194A7A00BDB092 /* TrendMedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrendMedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		88C1635627194A7A00BDB092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -44,7 +45,6 @@
 		88C1636C2719506700BDB092 /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		88C1636E27195A4800BDB092 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		88C163702719674D00BDB092 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
-		88CCC97B271F9F5900A21567 /* InfoContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoContentTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,8 +84,8 @@
 				88C1635A27194A7A00BDB092 /* ViewController.swift */,
 				88C1636E27195A4800BDB092 /* SearchViewController.swift */,
 				88C1635C27194A7A00BDB092 /* Main.storyboard */,
+				88A7EC25272054D3004D2AFD /* OverviewTableViewCell.swift */,
 				8863936F271FE1370016995F /* LocationViewController.swift */,
-				88CCC97B271F9F5900A21567 /* InfoContentTableViewCell.swift */,
 				88639371271FFDCC0016995F /* TheaterLocations.swift */,
 				8833C563271EEB0D00F4A148 /* BookCollectionViewCell.swift */,
 				88BBAE27271D3E7D008D77FB /* MovieWebViewControlle.swift */,
@@ -176,10 +176,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88A7EC26272054D3004D2AFD /* OverviewTableViewCell.swift in Sources */,
 				88C1636F27195A4800BDB092 /* SearchViewController.swift in Sources */,
 				88639372271FFDCC0016995F /* TheaterLocations.swift in Sources */,
 				88BBAE28271D3E7D008D77FB /* MovieWebViewControlle.swift in Sources */,
-				88CCC97C271F9F5900A21567 /* InfoContentTableViewCell.swift in Sources */,
 				88639370271FE1370016995F /* LocationViewController.swift in Sources */,
 				88C1636D2719506700BDB092 /* Sample.swift in Sources */,
 				8833C564271EEB0D00F4A148 /* BookCollectionViewCell.swift in Sources */,

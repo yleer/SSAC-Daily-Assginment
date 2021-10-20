@@ -54,20 +54,21 @@ extension InfoViewController : UITableViewDelegate, UITableViewDataSource{
     }
     @objc func changeOverviewShowingtype(){
         howToShowOverView = !howToShowOverView
+        infoTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "InfoContent") as? InfoContentTableViewCell else{
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "Overview") as? OverviewTableViewCell else{
                 return UITableViewCell()
             }
-            cell.movieContentLabel.text = program?.overview
+            cell.overviewLabel.text = program?.overview
             if howToShowOverView{
-                cell.movieContentLabel.numberOfLines = 0
+                cell.overviewLabel.numberOfLines = 0
             }else{
-                cell.movieContentLabel.numberOfLines = 2
+                cell.overviewLabel.numberOfLines = 2
             }
-            cell.showMoreButton.addTarget(self, action: #selector(changeOverviewShowingtype), for: .touchUpInside)
+            cell.seeMoreButton.addTarget(self, action: #selector(changeOverviewShowingtype), for: .touchUpInside)
             return cell
         }else{
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "base") else{
@@ -82,10 +83,18 @@ extension InfoViewController : UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0{
-            return 150
+            if howToShowOverView{
+                return 150
+            }else{
+                return 110
+            }
         }else{
             return 100
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath)
     }
     
 //    tableviewsection

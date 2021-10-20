@@ -1,5 +1,5 @@
 //
-//  InfoContentTableViewCell.swift
+//  OverviewTableViewCell.swift
 //  TrendMedia
 //
 //  Created by Yundong Lee on 2021/10/20.
@@ -7,10 +7,10 @@
 
 import UIKit
 
-class InfoContentTableViewCell: UITableViewCell {
+class OverviewTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var showMoreButton: UIButton!
-    @IBOutlet weak var movieContentLabel: UILabel!
+    @IBOutlet weak var seeMoreButton: UIButton!
+    @IBOutlet weak var overviewLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
