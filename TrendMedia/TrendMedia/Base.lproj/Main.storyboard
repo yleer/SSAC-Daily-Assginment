@@ -56,7 +56,7 @@
                                                                 <constraint firstAttribute="width" secondItem="E74-Wa-fj0" secondAttribute="height" id="2yf-Uf-3Nx"/>
                                                             </constraints>
                                                             <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="plain" image="video.fill" catalog="system">
+                                                            <buttonConfiguration key="configuration" style="plain" image="book.closed.fill" catalog="system">
                                                                 <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="35"/>
                                                             </buttonConfiguration>
                                                             <connections>
@@ -217,12 +217,19 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Trend Media" id="0Bb-0t-f2A">
-                        <barButtonItem key="leftBarButtonItem" image="list.bullet" catalog="system" id="0ff-B3-HMs">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="infoButtonClicked:" destination="BYZ-38-t0r" id="7J6-xL-VMN"/>
-                            </connections>
-                        </barButtonItem>
+                        <leftBarButtonItems>
+                            <barButtonItem image="list.bullet" catalog="system" id="0ff-B3-HMs">
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="infoButtonClicked:" destination="BYZ-38-t0r" id="7J6-xL-VMN"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Item" id="l2c-0B-5Nn">
+                                <connections>
+                                    <segue destination="ISg-Aj-VvI" kind="show" id="3Uh-fZ-HAb"/>
+                                </connections>
+                            </barButtonItem>
+                        </leftBarButtonItems>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="lcW-MR-5lm">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -237,6 +244,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="900.00000000000011" y="95.758928571428569"/>
+        </scene>
+        <!--Location View Controller-->
+        <scene sceneID="kjX-cs-1U5">
+            <objects>
+                <viewController storyboardIdentifier="LocationViewController" id="ISg-Aj-VvI" customClass="LocationViewController" customModule="TrendMedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YjH-RZ-PkC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JrJ-bJ-hNa">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                            </mapView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7YK-53-p2V"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="7YK-53-p2V" firstAttribute="trailing" secondItem="JrJ-bJ-hNa" secondAttribute="trailing" id="8A1-24-DwN"/>
+                            <constraint firstItem="JrJ-bJ-hNa" firstAttribute="top" secondItem="7YK-53-p2V" secondAttribute="top" id="Sng-Wb-DfN"/>
+                            <constraint firstItem="7YK-53-p2V" firstAttribute="bottom" secondItem="JrJ-bJ-hNa" secondAttribute="bottom" id="WVG-mf-xFY"/>
+                            <constraint firstItem="JrJ-bJ-hNa" firstAttribute="leading" secondItem="7YK-53-p2V" secondAttribute="leading" id="lJX-Z0-WsJ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="oFb-Em-ls8">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="JO7-rO-9bL">
+                            <connections>
+                                <action selector="filterTheater:" destination="ISg-Aj-VvI" id="GvR-Dd-anq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="JrJ-bJ-hNa" id="fpJ-B0-Pis"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bd0-qZ-wRT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1849" y="96"/>
         </scene>
         <!--Book View Controller-->
         <scene sceneID="wSz-y7-aOB">
@@ -325,7 +368,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QSS-2i-CUq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1882.608695652174" y="95.758928571428569"/>
+            <point key="canvasLocation" x="2842" y="96"/>
         </scene>
         <!--Info View Controller-->
         <scene sceneID="ScB-1U-Nla">
@@ -379,6 +422,42 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="InfoContent" rowHeight="169" id="d9G-74-E9R" customClass="InfoContentTableViewCell" customModule="TrendMedia" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="267" width="414" height="169"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="d9G-74-E9R" id="21J-HL-GJj" customClass="InfoContentTableViewCell" customModule="TrendMedia" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="169"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qw9-aX-UH7">
+                                                    <rect key="frame" x="173.5" y="125" width="67" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="8Ep-gG-DUz"/>
+                                                    </constraints>
+                                                    <state key="normal" title="Button"/>
+                                                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gl9-3Y-zKE">
+                                                    <rect key="frame" x="4" y="4" width="406" height="113"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="qw9-aX-UH7" secondAttribute="bottom" constant="8" id="2hG-Pt-0Uw"/>
+                                                <constraint firstItem="gl9-3Y-zKE" firstAttribute="top" secondItem="21J-HL-GJj" secondAttribute="top" constant="4" id="7YU-pf-dM2"/>
+                                                <constraint firstItem="qw9-aX-UH7" firstAttribute="top" secondItem="gl9-3Y-zKE" secondAttribute="bottom" constant="8" id="AJv-7V-rbb"/>
+                                                <constraint firstItem="qw9-aX-UH7" firstAttribute="centerX" secondItem="21J-HL-GJj" secondAttribute="centerX" id="PAK-0q-RRw"/>
+                                                <constraint firstItem="gl9-3Y-zKE" firstAttribute="leading" secondItem="21J-HL-GJj" secondAttribute="leading" constant="4" id="Qy8-cQ-bui"/>
+                                                <constraint firstAttribute="trailing" secondItem="gl9-3Y-zKE" secondAttribute="trailing" constant="4" id="aIT-eC-XJx"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="movieContentLabel" destination="gl9-3Y-zKE" id="nCa-TP-F4P"/>
+                                            <outlet property="showMoreButton" destination="qw9-aX-UH7" id="Ml5-ZS-WiF"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
@@ -398,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YSR-5a-zHA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2407" y="-994"/>
+            <point key="canvasLocation" x="2405.7971014492755" y="-994.41964285714278"/>
         </scene>
         <!--Movie Web View Controlle-->
         <scene sceneID="3jV-v0-1yw">
@@ -487,11 +566,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="book.closed.fill" catalog="system" width="115" height="128"/>
         <image name="gamecontroller" catalog="system" width="128" height="80"/>
         <image name="info.circle" catalog="system" width="128" height="121"/>
         <image name="list.bullet" catalog="system" width="128" height="88"/>
         <image name="tv" catalog="system" width="128" height="97"/>
-        <image name="video.fill" catalog="system" width="128" height="82"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
