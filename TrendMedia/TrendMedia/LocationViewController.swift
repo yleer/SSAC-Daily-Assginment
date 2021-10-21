@@ -156,6 +156,7 @@ extension LocationViewController : CLLocationManagerDelegate{
         }else{
             authStatus = CLLocationManager.authorizationStatus() // IOS 14이상 미만
         }
+        
         if CLLocationManager.locationServicesEnabled(){
             checkCurrentLocationAuth(authStatus)
         }else{
@@ -172,6 +173,23 @@ extension LocationViewController : CLLocationManagerDelegate{
             print("not determined")
         case .restricted, .denied:
             print("denied , 설정으로 유도")
+            let alertVC = UIAlertController(title: "위치 권한이 거부되었습니다.", message: "정확한 서비스를 위하여 위치 권한을 허용해주세요.", preferredStyle: .alert)
+            
+            let goToSetting = UIAlertAction(title: "설정으로", style: .default) { _ in
+                guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                        return
+                    }
+
+                    if UIApplication.shared.canOpenURL(settingsUrl) {
+                        UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                            print("Settings opened: \(success)") 
+                        })
+                    }
+            }
+            let cancelAction = UIAlertAction(title: "취소", style: .cancel)
+            alertVC.addAction(cancelAction)
+            alertVC.addAction(goToSetting)
+            self.present(alertVC, animated: true, completion: nil)
         case .authorizedAlways:
             locationManager.startUpdatingLocation()
             print("always")
