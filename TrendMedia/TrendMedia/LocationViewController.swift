@@ -130,7 +130,6 @@ extension LocationViewController : CLLocationManagerDelegate{
         }else{
             print("not good")
         }
-        
     }
     
     // Error handling
@@ -149,7 +148,7 @@ extension LocationViewController : CLLocationManagerDelegate{
         checkCLAuthStatus()
     }
     
-    func checkCLAuthStatus(){
+    func checkCLAuthStatus() {
         let authStatus : CLAuthorizationStatus
         if #available(iOS 14.0, *){
             authStatus = locationManager.authorizationStatus // IOS 14이상 가능
@@ -167,7 +166,7 @@ extension LocationViewController : CLLocationManagerDelegate{
     func checkCurrentLocationAuth(_ status : CLAuthorizationStatus){
         switch status {
         case .notDetermined:
-            locationManager.requestWhenInUseAuthorization()
+            
             locationManager.startUpdatingLocation()
             locationManager.requestWhenInUseAuthorization()
             print("not determined")
