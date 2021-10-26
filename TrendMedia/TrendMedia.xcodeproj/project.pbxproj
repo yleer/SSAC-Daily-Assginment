@@ -24,6 +24,13 @@
 		88C1636D2719506700BDB092 /* Sample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1636C2719506700BDB092 /* Sample.swift */; };
 		88C1636F27195A4800BDB092 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C1636E27195A4800BDB092 /* SearchViewController.swift */; };
 		88C163712719674D00BDB092 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88C163702719674D00BDB092 /* InfoViewController.swift */; };
+		88DBB39B27279D2C00DC8B52 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 88DBB39A27279D2C00DC8B52 /* SwiftyJSON */; };
+		88DBB39E27279D3600DC8B52 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 88DBB39D27279D3600DC8B52 /* Alamofire */; };
+		88DBB3A02727C85900DC8B52 /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB39F2727C85900DC8B52 /* InfoTableViewCell.swift */; };
+		88DBB3A22727C8D000DC8B52 /* MovieModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB3A12727C8D000DC8B52 /* MovieModel.swift */; };
+		88DBB3AD2727F3CD00DC8B52 /* MovieRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB3AC2727F3CD00DC8B52 /* MovieRankingViewController.swift */; };
+		88DBB3AF2727F55800DC8B52 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB3AE2727F55800DC8B52 /* RankingTableViewCell.swift */; };
+		88DBB3B127281A5A00DC8B52 /* MovieRankData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB3B027281A5A00DC8B52 /* MovieRankData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +52,11 @@
 		88C1636C2719506700BDB092 /* Sample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sample.swift; sourceTree = "<group>"; };
 		88C1636E27195A4800BDB092 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		88C163702719674D00BDB092 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		88DBB39F2727C85900DC8B52 /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
+		88DBB3A12727C8D000DC8B52 /* MovieModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieModel.swift; sourceTree = "<group>"; };
+		88DBB3AC2727F3CD00DC8B52 /* MovieRankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRankingViewController.swift; sourceTree = "<group>"; };
+		88DBB3AE2727F55800DC8B52 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
+		88DBB3B027281A5A00DC8B52 /* MovieRankData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRankData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +64,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88DBB39E27279D3600DC8B52 /* Alamofire in Frameworks */,
+				88DBB39B27279D2C00DC8B52 /* SwiftyJSON in Frameworks */,
 				88BBAE26271D3815008D77FB /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -62,6 +76,7 @@
 		88C1634A27194A7A00BDB092 = {
 			isa = PBXGroup;
 			children = (
+				88DBB39F2727C85900DC8B52 /* InfoTableViewCell.swift */,
 				88C1635527194A7A00BDB092 /* TrendMedia */,
 				88C1635427194A7A00BDB092 /* Products */,
 			);
@@ -84,6 +99,10 @@
 				88C1635A27194A7A00BDB092 /* ViewController.swift */,
 				88C1636E27195A4800BDB092 /* SearchViewController.swift */,
 				88C1635C27194A7A00BDB092 /* Main.storyboard */,
+				88DBB3AE2727F55800DC8B52 /* RankingTableViewCell.swift */,
+				88DBB3AC2727F3CD00DC8B52 /* MovieRankingViewController.swift */,
+				88DBB3B027281A5A00DC8B52 /* MovieRankData.swift */,
+				88DBB3A12727C8D000DC8B52 /* MovieModel.swift */,
 				88A7EC25272054D3004D2AFD /* OverviewTableViewCell.swift */,
 				8863936F271FE1370016995F /* LocationViewController.swift */,
 				88639371271FFDCC0016995F /* TheaterLocations.swift */,
@@ -117,6 +136,8 @@
 			name = TrendMedia;
 			packageProductDependencies = (
 				88BBAE25271D3815008D77FB /* Kingfisher */,
+				88DBB39A27279D2C00DC8B52 /* SwiftyJSON */,
+				88DBB39D27279D3600DC8B52 /* Alamofire */,
 			);
 			productName = TrendMedia;
 			productReference = 88C1635327194A7A00BDB092 /* TrendMedia.app */;
@@ -148,6 +169,8 @@
 			mainGroup = 88C1634A27194A7A00BDB092;
 			packageReferences = (
 				88BBAE24271D3815008D77FB /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				88DBB39927279D2C00DC8B52 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				88DBB39C27279D3600DC8B52 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 88C1635427194A7A00BDB092 /* Products */;
 			projectDirPath = "";
@@ -179,14 +202,19 @@
 				88A7EC26272054D3004D2AFD /* OverviewTableViewCell.swift in Sources */,
 				88C1636F27195A4800BDB092 /* SearchViewController.swift in Sources */,
 				88639372271FFDCC0016995F /* TheaterLocations.swift in Sources */,
+				88DBB3AF2727F55800DC8B52 /* RankingTableViewCell.swift in Sources */,
 				88BBAE28271D3E7D008D77FB /* MovieWebViewControlle.swift in Sources */,
 				88639370271FE1370016995F /* LocationViewController.swift in Sources */,
 				88C1636D2719506700BDB092 /* Sample.swift in Sources */,
 				8833C564271EEB0D00F4A148 /* BookCollectionViewCell.swift in Sources */,
+				88DBB3B127281A5A00DC8B52 /* MovieRankData.swift in Sources */,
 				88C1635B27194A7A00BDB092 /* ViewController.swift in Sources */,
+				88DBB3AD2727F3CD00DC8B52 /* MovieRankingViewController.swift in Sources */,
 				88C163712719674D00BDB092 /* InfoViewController.swift in Sources */,
 				88C1635727194A7A00BDB092 /* AppDelegate.swift in Sources */,
 				8833C562271EE9C200F4A148 /* BookViewController.swift in Sources */,
+				88DBB3A02727C85900DC8B52 /* InfoTableViewCell.swift in Sources */,
+				88DBB3A22727C8D000DC8B52 /* MovieModel.swift in Sources */,
 				88C1636B27194F4200BDB092 /* MovieTableViewCell.swift in Sources */,
 				88C1635927194A7A00BDB092 /* SceneDelegate.swift in Sources */,
 			);
@@ -416,6 +444,22 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		88DBB39927279D2C00DC8B52 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON";
+			requirement = {
+				kind = exactVersion;
+				version = 5.0.0;
+			};
+		};
+		88DBB39C27279D3600DC8B52 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -423,6 +467,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 88BBAE24271D3815008D77FB /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		88DBB39A27279D2C00DC8B52 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88DBB39927279D2C00DC8B52 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		88DBB39D27279D3600DC8B52 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88DBB39C27279D3600DC8B52 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

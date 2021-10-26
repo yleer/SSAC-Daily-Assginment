@@ -145,6 +145,17 @@
                             <constraint firstItem="y26-d5-q4p" firstAttribute="top" secondItem="pEy-cr-VP4" secondAttribute="bottom" constant="120" id="kUW-4n-65C"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="name" destination="j95-YZ-K6s" id="pmx-61-O1b"/>
+                        <outlet property="pickerView" destination="PzY-fK-MvS" id="lMm-cS-Jsv"/>
+                        <outletCollection property="balls" destination="jCT-rj-Mnd" collectionClass="NSMutableArray" id="ptf-xL-buy"/>
+                        <outletCollection property="balls" destination="0gL-zG-Y6I" collectionClass="NSMutableArray" id="oLt-qK-XKg"/>
+                        <outletCollection property="balls" destination="s5Q-Fw-i0C" collectionClass="NSMutableArray" id="zM0-S3-VoX"/>
+                        <outletCollection property="balls" destination="Sm3-op-w1L" collectionClass="NSMutableArray" id="0Bc-fu-3sE"/>
+                        <outletCollection property="balls" destination="Q9A-zo-OGB" collectionClass="NSMutableArray" id="SZp-hi-zCY"/>
+                        <outletCollection property="balls" destination="gQq-Td-3BC" collectionClass="NSMutableArray" id="10P-1Q-8X5"/>
+                        <outletCollection property="balls" destination="3IP-np-p1P" collectionClass="NSMutableArray" id="7j4-16-47U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
