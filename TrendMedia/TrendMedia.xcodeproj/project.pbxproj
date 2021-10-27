@@ -31,6 +31,9 @@
 		88DBB3AD2727F3CD00DC8B52 /* MovieRankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB3AC2727F3CD00DC8B52 /* MovieRankingViewController.swift */; };
 		88DBB3AF2727F55800DC8B52 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB3AE2727F55800DC8B52 /* RankingTableViewCell.swift */; };
 		88DBB3B127281A5A00DC8B52 /* MovieRankData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB3B027281A5A00DC8B52 /* MovieRankData.swift */; };
+		88E6464E27299DF6000681A8 /* TmbViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6464D27299DF6000681A8 /* TmbViewController.swift */; };
+		88E6465027299E6B000681A8 /* TmbNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6464F27299E6B000681A8 /* TmbNetworkManager.swift */; };
+		88E646522729A081000681A8 /* TmbTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E646512729A081000681A8 /* TmbTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +60,9 @@
 		88DBB3AC2727F3CD00DC8B52 /* MovieRankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRankingViewController.swift; sourceTree = "<group>"; };
 		88DBB3AE2727F55800DC8B52 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
 		88DBB3B027281A5A00DC8B52 /* MovieRankData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRankData.swift; sourceTree = "<group>"; };
+		88E6464D27299DF6000681A8 /* TmbViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmbViewController.swift; sourceTree = "<group>"; };
+		88E6464F27299E6B000681A8 /* TmbNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmbNetworkManager.swift; sourceTree = "<group>"; };
+		88E646512729A081000681A8 /* TmbTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmbTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +105,9 @@
 				88C1635A27194A7A00BDB092 /* ViewController.swift */,
 				88C1636E27195A4800BDB092 /* SearchViewController.swift */,
 				88C1635C27194A7A00BDB092 /* Main.storyboard */,
+				88E646512729A081000681A8 /* TmbTableViewCell.swift */,
+				88E6464D27299DF6000681A8 /* TmbViewController.swift */,
+				88E6464F27299E6B000681A8 /* TmbNetworkManager.swift */,
 				88DBB3AE2727F55800DC8B52 /* RankingTableViewCell.swift */,
 				88DBB3AC2727F3CD00DC8B52 /* MovieRankingViewController.swift */,
 				88DBB3B027281A5A00DC8B52 /* MovieRankData.swift */,
@@ -209,6 +218,7 @@
 				8833C564271EEB0D00F4A148 /* BookCollectionViewCell.swift in Sources */,
 				88DBB3B127281A5A00DC8B52 /* MovieRankData.swift in Sources */,
 				88C1635B27194A7A00BDB092 /* ViewController.swift in Sources */,
+				88E646522729A081000681A8 /* TmbTableViewCell.swift in Sources */,
 				88DBB3AD2727F3CD00DC8B52 /* MovieRankingViewController.swift in Sources */,
 				88C163712719674D00BDB092 /* InfoViewController.swift in Sources */,
 				88C1635727194A7A00BDB092 /* AppDelegate.swift in Sources */,
@@ -217,6 +227,8 @@
 				88DBB3A22727C8D000DC8B52 /* MovieModel.swift in Sources */,
 				88C1636B27194F4200BDB092 /* MovieTableViewCell.swift in Sources */,
 				88C1635927194A7A00BDB092 /* SceneDelegate.swift in Sources */,
+				88E6465027299E6B000681A8 /* TmbNetworkManager.swift in Sources */,
+				88E6464E27299DF6000681A8 /* TmbViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

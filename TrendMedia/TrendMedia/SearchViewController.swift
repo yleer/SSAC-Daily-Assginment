@@ -9,7 +9,24 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
-class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
+    
+    //cell for row at 전에 필요한 데이터 미리 다운받는 함수.
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        for indexPath in indexPaths {
+            if movieData.count - 2 == indexPath.row{
+                startPage += 10
+                fetchData()
+                print("fehcing", indexPaths)
+            }
+        }
+    }
+    
+    // 사용자가 스크롤 빨리 해서 데이터 필요 없으면 다운 취소
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        print("취소\(indexPaths)")
+    }
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         movieData.count
@@ -37,6 +54,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         searchedTableView.dataSource = self
         searchedTableView.delegate = self
+        searchedTableView.prefetchDataSource = self
         
         fetchData()
     }
@@ -49,10 +67,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     // 네이버 영화 네트워크 통신
     
     var movieData: [MovieModel] = []
+    var startPage = 1
     func fetchData(){
         
-        if let query = "스파이더맨".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
-            let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=10&start=1&genre=1"
+        if let query = "사랑".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
+            let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=10&start=\(startPage)"
             let header: HTTPHeaders = [
                 "X-Naver-Client-Id" : "sbF_TwlMoLeQ5c6xgcEe",
                 "X-Naver-Client-Secret" : "hIlG3W6Ymj"
