@@ -16,7 +16,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         for indexPath in indexPaths {
             if movieData.count - 2 == indexPath.row{
                 startPage += 10
-                fetchData()
+                fetchData(query: curresntSearchString)
                 print("fehcing", indexPaths)
             }
         }
@@ -55,8 +55,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         searchedTableView.dataSource = self
         searchedTableView.delegate = self
         searchedTableView.prefetchDataSource = self
-        
-        fetchData()
     }
     
     @IBAction func goBackButtonPressed(_ sender: UIButton) {
@@ -68,9 +66,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var movieData: [MovieModel] = []
     var startPage = 1
-    func fetchData(){
+    func fetchData(query: String){
         
-        if let query = "사랑".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
+        if let query = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed){
             let url = "https://openapi.naver.com/v1/search/movie.json?query=\(query)&display=10&start=\(startPage)"
             let header: HTTPHeaders = [
                 "X-Naver-Client-Id" : "sbF_TwlMoLeQ5c6xgcEe",
@@ -102,6 +100,30 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
         
+    }
+    
+    var curresntSearchString = ""
+    
+}
+extension SearchViewController: UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        if let text = searchBar.text{
+            curresntSearchString = text
+            movieData.removeAll()
+            startPage = 1
+            fetchData(query: text)
+        }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        movieData.removeAll()
+        searchedTableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
     }
     
 }

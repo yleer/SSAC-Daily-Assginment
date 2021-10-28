@@ -22,6 +22,7 @@ class MovieRankingViewController: UIViewController {
         super.viewDidLoad()
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
+        searchBar.delegate = self
         
         
         rankingTableView.backgroundView?.backgroundColor = .clear
@@ -52,6 +53,24 @@ class MovieRankingViewController: UIViewController {
     
 
     @IBAction func searchButtonClicked(_ sender: UIButton) {
+    }
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+}
+
+
+extension MovieRankingViewController: UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        print("ASDf")
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
     }
     
 }

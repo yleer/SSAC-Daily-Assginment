@@ -23,8 +23,8 @@ class TmbViewController: UIViewController {
                 let title = item["title"].stringValue
                 let release = item["release_date"].stringValue
                 let poster = item["poster_path"].stringValue
-                let tmp = TmbData(title: title, release_date: release, poster_path: poster)
-                self.movieData.append(tmp)
+//                let tmp = TmbData(title: title, release_date: release, poster_path: poster)
+//                self.movieData.append(tmp)
             }
             self.contentTableView.reloadData()
         }
@@ -42,8 +42,8 @@ extension TmbViewController: UITableViewDelegate, UITableViewDataSource, UITable
                         let title = item["title"].stringValue
                         let release = item["release_date"].stringValue
                         let poster = item["poster_path"].stringValue
-                        let tmp = TmbData(title: title, release_date: release, poster_path: poster)
-                        self.movieData.append(tmp)
+//                        let tmp = TmbData(title: title, release_date: release, poster_path: poster)
+//                        self.movieData.append(tmp)
                     }
                     self.contentTableView.reloadData()
                 }

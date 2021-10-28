@@ -9,11 +9,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
-struct TmbData{
-    var title: String
-    var release_date: String
-    var poster_path: String
-}
+
 
 class TmbNetworkManager{
     
