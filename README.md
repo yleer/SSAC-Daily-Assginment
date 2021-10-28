@@ -18,3 +18,6 @@
 10.27 - Singleton Pattern(Network)
       - UITableViewDataSourcePrefetching to fetch data before needed.(Preparing data.)
        <br />
+10.28
+      - Networking. Fethcing data from TMDB api. 
+       <br />
