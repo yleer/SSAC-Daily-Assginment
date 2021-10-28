@@ -15,3 +15,6 @@
 10.26 - Networking. Movie Api, lottery Api.
       <br />
 
+10.27 - Singleton Pattern(Network)
+      - UITableViewDataSourcePrefetching to fetch data before needed.(Preparing data.)
+       <br />
