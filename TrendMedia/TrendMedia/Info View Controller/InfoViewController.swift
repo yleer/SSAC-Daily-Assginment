@@ -11,14 +11,11 @@ import SwiftyJSON
 import Kingfisher
 
 
-
 struct Cast{
-    
     var cast_id: Int
     var profile_path: String
     var character: String
     var name: String
-    
 }
 
 struct Crew{
@@ -33,65 +30,48 @@ class InfoViewController: UIViewController {
     var movieId : Int!
     var howToShowOverView = false
     var casts: [Cast] = []
-    let posterBaseUrl = "https://image.tmdb.org/t/p/w500/"
     var crews: [Crew] = []
-
+    var overview = ""
+    
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var infoTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        let nib = UINib(nibName: "PeopleTableViewCell", bundle: nil)
-        infoTableView.register(nib, forCellReuseIdentifier: "PeopleTableViewCell")
+        
+        let nib = UINib(nibName: PeopleTableViewCell.identifier, bundle: nil)
+        infoTableView.register(nib, forCellReuseIdentifier: PeopleTableViewCell.identifier)
         infoTableView.delegate = self
         infoTableView.dataSource = self
-        gettingMovieData()
-        gettingStaffData()
         
+        infoTableView.rowHeight = UITableView.automaticDimension
         
-    }
-    var overview = ""
-    func gettingMovieData(){
-        let url = "https://api.themoviedb.org/3/movie/\(movieId!)?api_key=6e61b7685e790bc1f3aaed7f5dcdb479&language=en-US"
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                self.overview = json["overview"].stringValue
-                let posterUrlString = json["backdrop_path"].stringValue
-                let posterUrl = URL(string: self.posterBaseUrl + posterUrlString)
-                self.headerImageView.kf.setImage(with: posterUrl)
-            case .failure(let error):
-                print(error)
-            }
+        if let id = movieId{
+            fetchData(id: id)
         }
-    }
-    
-    
-    func gettingStaffData(){
-        let url = "https://api.themoviedb.org/3/movie/\(movieId!)/credits?api_key=6e61b7685e790bc1f3aaed7f5dcdb479&language=en-US"
-        AF.request(url, method: .get).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                
-                for cast in json["cast"].arrayValue{
-                    let tmp = Cast(cast_id: cast["cast_id"].intValue, profile_path: cast["profile_path"].stringValue, character: cast["character"].stringValue, name: cast["name"].stringValue)
-                    
-                    self.casts.append(tmp)
-                }
-                for crew in json["crew"].arrayValue{
-                    let tmp = Crew(job: crew["job"].stringValue, known_for_department: crew["known_for_department"].stringValue, profile_path: crew["profile_path"].stringValue)
-                    
-                    self.crews.append(tmp)
-                }
-                self.infoTableView.reloadData()
 
-                
-            case .failure(let error):
-                print(error)
-            }
+    }
+    func fetchData(id: Int){
+        TmbNetworkManager.shared.fetchMovieByID(movieId: id) { statusCode, json in
+            self.overview = json["overview"].stringValue
+            let posterUrlString = json["backdrop_path"].stringValue
+            let posterUrl = URL(string: Constans.posterBaseUrl + posterUrlString)
+            self.headerImageView.kf.setImage(with: posterUrl)
         }
         
+        TmbNetworkManager.shared.gettingStaffData(movieId: id) { statusCode, json in
+            for cast in json["cast"].arrayValue{
+                let tmp = Cast(cast_id: cast["cast_id"].intValue, profile_path: cast["profile_path"].stringValue, character: cast["character"].stringValue, name: cast["name"].stringValue)
+                self.casts.append(tmp)
+            }
+            for crew in json["crew"].arrayValue{
+                let tmp = Crew(job: crew["job"].stringValue, known_for_department: crew["known_for_department"].stringValue, profile_path: crew["profile_path"].stringValue)
+                self.crews.append(tmp)
+            }
+            DispatchQueue.main.async {
+                self.infoTableView.reloadData()
+            }
+        }
     }
 }
 
@@ -111,16 +91,19 @@ extension InfoViewController : UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         3
     }
+    
     @objc func changeOverviewShowingtype(){
         howToShowOverView = !howToShowOverView
         infoTableView.reloadRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.section == 0 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "Overview") as? OverviewTableViewCell else{
                 return UITableViewCell()
             }
+            
             cell.overviewLabel.text = overview
             if howToShowOverView{
                 cell.overviewLabel.numberOfLines = 0
@@ -130,21 +113,35 @@ extension InfoViewController : UITableViewDelegate, UITableViewDataSource{
             cell.seeMoreButton.addTarget(self, action: #selector(changeOverviewShowingtype), for: .touchUpInside)
             return cell
         }else if indexPath.section == 1{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell") as? PeopleTableViewCell else{ return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PeopleTableViewCell.identifier) as? PeopleTableViewCell else{ return UITableViewCell() }
 
-            let url = URL(string: posterBaseUrl + casts[indexPath.row].profile_path)
-            cell.poster.kf.setImage(with: url)
-            cell.poster.sizeToFit()
+            let imageUrl = URL(string: Constans.posterBaseUrl + casts[indexPath.row].profile_path)
+            
+            cell.poster.kf.setImage(
+                with: imageUrl,
+                placeholder: UIImage(named: "no image"),
+                options: [
+                    .scaleFactor(UIScreen.main.scale),
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+                ])
             cell.topName.text = casts[indexPath.row].name
             cell.bottomName.text = casts[indexPath.row].character
             
             return cell
         }
         else if indexPath.section == 2{
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "PeopleTableViewCell") as? PeopleTableViewCell else{ return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: PeopleTableViewCell.identifier) as? PeopleTableViewCell else{ return UITableViewCell() }
 
-            let url = URL(string: posterBaseUrl + crews[indexPath.row].profile_path)
-            cell.poster.kf.setImage(with: url)
+            let imageUrl = URL(string: Constans.posterBaseUrl + crews[indexPath.row].profile_path)
+            cell.poster.kf.setImage(
+                with: imageUrl,
+                placeholder: UIImage(named: "no image"),
+                options: [
+                    .scaleFactor(UIScreen.main.scale),
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+                ])
             cell.topName.text = crews[indexPath.row].known_for_department
             cell.bottomName.text = crews[indexPath.row].job
             
@@ -153,21 +150,25 @@ extension InfoViewController : UITableViewDelegate, UITableViewDataSource{
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == 1{
+            return "Casts"
+        }else if section == 2{
+            return "Crew"
+        }
+        return nil
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0{
-            if howToShowOverView{
-                return 200
-            }else{
-                return 110
-            }
-        }else{
+        if indexPath.section != 0{
             return 100
+        }else{
+            return infoTableView.rowHeight
         }
     }
+
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
     }
-    
-//    tableviewsection
 }

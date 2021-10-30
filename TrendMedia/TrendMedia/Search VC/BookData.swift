@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct MovieModel{
+struct BookData{
     var title: String
     var imageData: String
     var linkData: String

@@ -9,7 +9,7 @@ import UIKit
 
 class MovieTableViewCell: UITableViewCell {
 
-    
+    static let identfier = "MovieTableViewCell"
    
     @IBOutlet weak var toMovieWeb: UIButton!
     @IBOutlet weak var containerView: UIView!
@@ -26,6 +26,7 @@ class MovieTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        toMovieWeb.setTitle("", for: .normal)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

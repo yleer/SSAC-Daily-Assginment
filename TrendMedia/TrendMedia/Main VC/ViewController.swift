@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Network
+
 import Alamofire
 import SwiftyJSON
 import Kingfisher
@@ -19,18 +21,14 @@ struct TmbData{
 }
 
 class ViewController: UIViewController{
-   
-    let movies = tvShow
     
+    @IBOutlet var buttons: [UIButton]!
+    var movieData : [TmbData] = []
+    var currentPage = 1
     @IBOutlet weak var movieTableView: UITableView!
-    let posterBaseUrl = "https://image.tmdb.org/t/p/w500/"
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        movieTableView.dataSource = self
-        movieTableView.delegate = self
-        movieTableView.prefetchDataSource = self
-        
-        TmbNetworkManager.shared.fetchData(currentPage: currentPage) { statusCode, json in
+    
+    func fetchData(){
+        TmbNetworkManager.shared.fetchTrendData(currentPage: currentPage) { statusCode, json in
             let data = json["results"].arrayValue
             for item in data{
                 let title = item["title"].stringValue
@@ -43,43 +41,62 @@ class ViewController: UIViewController{
                 let tmp = TmbData(title: title, release_date: release, poster_path: poster, id: id, genre_ids: geners)
                 self.movieData.append(tmp)
             }
-            self.movieTableView.reloadData()
+            
+            DispatchQueue.main.async {
+                self.movieTableView.reloadData()
+            }
         }
-
     }
-
     
-    @IBAction func infoButtonClicked(_ sender: UIBarButtonItem) {
+    let networkMonitor = NWPathMonitor()
+    
+    func networkCheck(){
+        networkMonitor.pathUpdateHandler = { path in
+            if path.status == .satisfied{
+                print("good network")
+                if path.usesInterfaceType(.cellular){
+                    print("cellular network")
+                }else if path.usesInterfaceType(.wifi){
+                    print("wifi network")
+                }
+                else{
+                print("other network")
+                }
+            }else{
+                let alertVC = UIAlertController(title: "네트워크 통신 오류", message: "네트워크 통신을 확인해 주세요.", preferredStyle: .alert)
+                
+                let okButton = UIAlertAction(title: "확인", style: .default)
+                alertVC.addAction(okButton)
+                print("bad network")
+                
+                self.present(alertVC, animated: true)
+            }
+            
+        }
+        networkMonitor.start(queue: DispatchQueue.global())
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        for button in buttons {
+            button.setTitle("", for: .normal)
+        }
+        movieTableView.dataSource = self
+        movieTableView.delegate = self
+        movieTableView.prefetchDataSource = self
+        fetchData()
+        networkCheck()
         
     }
-    @IBAction func searchButtonClicked(_ sender: UIBarButtonItem) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "SearchViewController") as! SearchViewController
-        
-        vc.modalPresentationStyle = .fullScreen
-        
-        present(vc, animated: true, completion: nil)
-        
-    }
-    @IBAction func presentBookVCbutton(_ sender: UIButton) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "BookViewController") as! BookViewController
-        vc.data = movies
-        navigationController?.pushViewController(vc, animated: true)
-        
-    }
+
     
     @objc func segueToWeb(_ sender : UIButton){
         let id = movieData[sender.tag].id
-        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "MovieWebViewControlle") as! MovieWebViewControlle
         vc.id = id
         present(vc, animated: true, completion: nil)
     }
-    
-    var currentPage = 1
-    var movieData : [TmbData] = []
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate, UITableViewDataSourcePrefetching {
@@ -88,27 +105,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate, UITableVie
         for indexPath in indexPaths {
             if movieData.count - 2 == indexPath.row{
                 currentPage += 1
-                TmbNetworkManager.shared.fetchData(currentPage: currentPage) { statusCode, json in
-                    let data = json["results"].arrayValue
-                    for item in data{
-                        let title = item["title"].stringValue
-                        let release = item["release_date"].stringValue
-                        let poster = item["poster_path"].stringValue
-                        let id = item["id"].intValue
-        //                let geners = item["genre_ids"].arrayValue as? [Int]
-                        let geners = [1]
-                        
-                        let tmp = TmbData(title: title, release_date: release, poster_path: poster, id: id, genre_ids: geners)
-                        self.movieData.append(tmp)
-                    }
-                    self.movieTableView.reloadData()
-                }
+                fetchData()
                 print("fehcing", indexPaths)
             }
         }
     }
-    
-    
+
+
     // 사용자가 스크롤 빨리 해서 데이터 필요 없으면 다운 취소
     func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
         print("취소\(indexPaths)")
@@ -129,7 +132,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate, UITableVie
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieTableViewCell", for: indexPath) as? MovieTableViewCell else{
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identfier, for: indexPath) as? MovieTableViewCell else{
             return UITableViewCell()
         }
         
@@ -142,11 +145,14 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate, UITableVie
         cell.koreanTitleLabel.text = row.title
         cell.dateLabel.text = row.release_date
         
-        let url = URL(string: posterBaseUrl + row.poster_path)
+        let url = URL(string: Constans.posterBaseUrl + row.poster_path)
         cell.posterImage.kf.setImage(with: url)
-        cell.posterImage.image = UIImage(named: row.title)
         cell.toMovieWeb.tag = indexPath.row
         cell.toMovieWeb.addTarget(self, action: #selector(segueToWeb), for: .touchUpInside)
+        cell.toMovieWeb.backgroundColor = .clear
+        cell.toMovieWeb.layer.cornerRadius = 10
+        cell.toMovieWeb.layer.borderWidth = 2
+        
         
         cell.posterImage.layer.cornerRadius = 10
         cell.containerView.layer.cornerRadius = 10

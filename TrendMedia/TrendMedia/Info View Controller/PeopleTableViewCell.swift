@@ -1,19 +1,16 @@
 //
-//  InfoTableViewCell.swift
+//  PeopleTableViewCell.swift
 //  TrendMedia
 //
-//  Created by Yundong Lee on 2021/10/26.
+//  Created by Yundong Lee on 2021/10/28.
 //
 
 import UIKit
 
-class InfoTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var movieTitle: UILabel!
-    @IBOutlet weak var infoPosterImage: UIImageView!
-    @IBOutlet weak var movieRating: UILabel!
-    @IBOutlet weak var movieSubTitle: UILabel!
+class PeopleTableViewCell: UITableViewCell {
     
+    static let identifier = "PeopleTableViewCell"
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -24,5 +21,8 @@ class InfoTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
+    @IBOutlet weak var bottomName: UILabel!
+    @IBOutlet weak var topName: UILabel!
+    @IBOutlet weak var poster: UIImageView!
 }
