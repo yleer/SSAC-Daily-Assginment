@@ -22,6 +22,8 @@ struct Crew{
     var job: String
     var known_for_department: String
     var profile_path: String
+    var credut_id: String
+    var id: Int
 }
 
 
@@ -65,7 +67,13 @@ class InfoViewController: UIViewController {
                 self.casts.append(tmp)
             }
             for crew in json["crew"].arrayValue{
-                let tmp = Crew(job: crew["job"].stringValue, known_for_department: crew["known_for_department"].stringValue, profile_path: crew["profile_path"].stringValue)
+                let tmp = Crew(
+                    job: crew["job"].stringValue,
+                    known_for_department: crew["known_for_department"].stringValue,
+                    profile_path: crew["profile_path"].stringValue,
+                    credut_id: crew["credit_id"].stringValue,
+                    id: crew["id"].intValue
+                )
                 self.crews.append(tmp)
             }
             DispatchQueue.main.async {
@@ -77,6 +85,8 @@ class InfoViewController: UIViewController {
 
 
 extension InfoViewController : UITableViewDelegate, UITableViewDataSource{
+    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
             return 1
@@ -169,6 +179,15 @@ extension InfoViewController : UITableViewDelegate, UITableViewDataSource{
 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "StaffDetailViewController") as! StaffDetailViewController
+        if indexPath.section == 1 {
+            vc.id = casts[indexPath.row].cast_id
+        }else if indexPath.section == 2 {
+            vc.id = crews[indexPath.row].id
+        }
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
     }
 }

@@ -26,6 +26,7 @@ class ViewController: UIViewController{
     var movieData : [TmbData] = []
     var currentPage = 1
     @IBOutlet weak var movieTableView: UITableView!
+    var generDic: [Int: String] = [:]
     
     func fetchData(){
         TmbNetworkManager.shared.fetchTrendData(currentPage: currentPage) { statusCode, json in
@@ -35,10 +36,13 @@ class ViewController: UIViewController{
                 let release = item["release_date"].stringValue
                 let poster = item["poster_path"].stringValue
                 let id = item["id"].intValue
-//                let geners = item["genre_ids"].arrayValue as? [Int]
-                let geners = [1]
+                let genersJson = item["genre_ids"].arrayValue
+                var genres: [Int] = []
+                for gener in genersJson {
+                    genres.append(gener.intValue)
+                }
                 
-                let tmp = TmbData(title: title, release_date: release, poster_path: poster, id: id, genre_ids: geners)
+                let tmp = TmbData(title: title, release_date: release, poster_path: poster, id: id, genre_ids: genres)
                 self.movieData.append(tmp)
             }
             
@@ -86,6 +90,12 @@ class ViewController: UIViewController{
         movieTableView.prefetchDataSource = self
         fetchData()
         networkCheck()
+        
+        TmbNetworkManager.shared.generIDs { statusCode, json in
+            for item in json["genres"].arrayValue{
+                self.generDic[item["id"].intValue] = item["name"].stringValue
+            }
+        }
         
     }
 
@@ -140,7 +150,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate, UITableVie
         
         cell.containerView.layer.borderColor = UIColor.gray.cgColor
         cell.containerView.layer.borderWidth = 1
-//        cell.genereLabel.text = "#" + row.genre
+        
+        var genereText = ""
+        
+        for id in row.genre_ids{
+            let tmp = generDic[id] ?? ""
+            genereText = genereText + " #" + tmp
+        }
+        
+        cell.genereLabel.text = genereText
         cell.englishTitleLabel.text = row.title
         cell.koreanTitleLabel.text = row.title
         cell.dateLabel.text = row.release_date

@@ -35,6 +35,7 @@
 		88DBB3B127281A5A00DC8B52 /* MovieRankData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DBB3B027281A5A00DC8B52 /* MovieRankData.swift */; };
 		88E1EDAE272AE321008FCDE3 /* PeopleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E1EDAC272AE321008FCDE3 /* PeopleTableViewCell.swift */; };
 		88E1EDAF272AE321008FCDE3 /* PeopleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 88E1EDAD272AE321008FCDE3 /* PeopleTableViewCell.xib */; };
+		88E595B7272E70F800F26570 /* StaffDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E595B6272E70F800F26570 /* StaffDetailViewController.swift */; };
 		88E6465027299E6B000681A8 /* TmbNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88E6464F27299E6B000681A8 /* TmbNetworkManager.swift */; };
 		88FDED7E272ACDBA00DD0383 /* CastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88FDED7D272ACDBA00DD0383 /* CastTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		88DBB3B027281A5A00DC8B52 /* MovieRankData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRankData.swift; sourceTree = "<group>"; };
 		88E1EDAC272AE321008FCDE3 /* PeopleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleTableViewCell.swift; sourceTree = "<group>"; };
 		88E1EDAD272AE321008FCDE3 /* PeopleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PeopleTableViewCell.xib; sourceTree = "<group>"; };
+		88E595B6272E70F800F26570 /* StaffDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffDetailViewController.swift; sourceTree = "<group>"; };
 		88E6464F27299E6B000681A8 /* TmbNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TmbNetworkManager.swift; sourceTree = "<group>"; };
 		88FDED7D272ACDBA00DD0383 /* CastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CastTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +135,7 @@
 				88B8CC76272D240F006A5209 /* Search VC */,
 				88C1635C27194A7A00BDB092 /* Main.storyboard */,
 				88B8CC71272CF978006A5209 /* Info View Controller */,
+				88E595B6272E70F800F26570 /* StaffDetailViewController.swift */,
 				88E6464F27299E6B000681A8 /* TmbNetworkManager.swift */,
 				88DC1A21272D52D900A2A97D /* Ranking VC */,
 				8863936F271FE1370016995F /* LocationViewController.swift */,
@@ -258,6 +261,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88E595B7272E70F800F26570 /* StaffDetailViewController.swift in Sources */,
 				88B8CC73272CFA42006A5209 /* Constants.swift in Sources */,
 				88A7EC26272054D3004D2AFD /* OverviewTableViewCell.swift in Sources */,
 				88C1636F27195A4800BDB092 /* SearchViewController.swift in Sources */,

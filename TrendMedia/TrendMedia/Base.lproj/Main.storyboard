@@ -482,6 +482,75 @@
             </objects>
             <point key="canvasLocation" x="1848" y="-281"/>
         </scene>
+        <!--Staff Detail View Controller-->
+        <scene sceneID="Sf0-3d-5CR">
+            <objects>
+                <viewController storyboardIdentifier="StaffDetailViewController" id="EJZ-X3-6LU" customClass="StaffDetailViewController" customModule="TrendMedia" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IOE-O9-xuA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="SRP-Zb-0x9">
+                                <rect key="frame" x="0.0" y="149" width="414" height="747"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Base" textLabel="mVP-Qx-b3N" detailTextLabel="fBE-1I-7Jd" imageView="sbq-RW-xQ9" rowHeight="90" style="IBUITableViewCellStyleValue1" id="knB-s0-DRK">
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="knB-s0-DRK" id="YhD-vD-B8I">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mVP-Qx-b3N">
+                                                    <rect key="frame" x="96" y="33" width="38" height="24"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fBE-1I-7Jd">
+                                                    <rect key="frame" x="356.5" y="39" width="37.5" height="17"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="Maid" id="sbq-RW-xQ9">
+                                                    <rect key="frame" x="20" y="0.0" width="61" height="90"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j7W-XT-j98">
+                                <rect key="frame" x="0.0" y="44" width="414" height="105"/>
+                                <color key="backgroundColor" systemColor="systemBrownColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vio-vL-2Cv"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="j7W-XT-j98" firstAttribute="trailing" secondItem="vio-vL-2Cv" secondAttribute="trailing" id="06k-cj-rEa"/>
+                            <constraint firstItem="j7W-XT-j98" firstAttribute="top" secondItem="vio-vL-2Cv" secondAttribute="top" id="0Je-bU-H3d"/>
+                            <constraint firstItem="SRP-Zb-0x9" firstAttribute="trailing" secondItem="vio-vL-2Cv" secondAttribute="trailing" id="4m4-mo-J55"/>
+                            <constraint firstItem="SRP-Zb-0x9" firstAttribute="leading" secondItem="vio-vL-2Cv" secondAttribute="leading" id="EQr-Bq-zHo"/>
+                            <constraint firstItem="SRP-Zb-0x9" firstAttribute="top" secondItem="j7W-XT-j98" secondAttribute="bottom" id="N22-1T-31s"/>
+                            <constraint firstAttribute="bottom" secondItem="SRP-Zb-0x9" secondAttribute="bottom" id="P5F-lj-gRc"/>
+                            <constraint firstItem="j7W-XT-j98" firstAttribute="leading" secondItem="vio-vL-2Cv" secondAttribute="leading" id="mfE-50-j4K"/>
+                            <constraint firstItem="j7W-XT-j98" firstAttribute="height" secondItem="IOE-O9-xuA" secondAttribute="height" multiplier="0.117188" id="qIi-Nv-wwp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="xHQ-zk-cfJ"/>
+                    <connections>
+                        <outlet property="workedTableView" destination="SRP-Zb-0x9" id="mAi-nz-yNM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ejX-Su-dGU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2769.5652173913045" y="-281.25"/>
+        </scene>
         <!--Movie Ranking View Controller-->
         <scene sceneID="b0x-AX-zeR">
             <objects>
@@ -731,6 +800,7 @@
     </scenes>
     <resources>
         <image name="Greys Anatomy" width="350" height="525"/>
+        <image name="Maid" width="350" height="519"/>
         <image name="arrow.down.app" catalog="system" width="128" height="114"/>
         <image name="book.closed.fill" catalog="system" width="115" height="128"/>
         <image name="gamecontroller" catalog="system" width="128" height="80"/>
