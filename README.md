@@ -21,3 +21,5 @@
 10.28
       - Networking. Fethcing data from TMDB api. 
        <br />
+10.30
+      - Refactor Trend Media project. (Deleted unnecesary codes and files)
