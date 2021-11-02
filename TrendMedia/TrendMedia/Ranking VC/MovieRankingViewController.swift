@@ -8,14 +8,15 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import RealmSwift
 
 
 class MovieRankingViewController: UIViewController {
-    
-    @IBOutlet weak var textField: UITextField!
+    let localRealm = try! Realm()
     @IBOutlet weak var rankingTableView: UITableView!
     
     
+    var searchDate: String = "20200427"
     var movies: [MovieRankData] = []
     
     override func viewDidLoad() {
@@ -23,10 +24,10 @@ class MovieRankingViewController: UIViewController {
         rankingTableView.delegate = self
         rankingTableView.dataSource = self
         searchBar.delegate = self
-        
+        print(localRealm.configuration.fileURL)
         
         rankingTableView.backgroundView?.backgroundColor = .clear
-        let url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=deb3caf441295e781d5f5ae4c155a5aa&targetDt=20211025"
+        let url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=deb3caf441295e781d5f5ae4c155a5aa&targetDt=\(searchDate)"
         
         AF.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
@@ -39,7 +40,15 @@ class MovieRankingViewController: UIViewController {
                     let movieNm = movie["movieNm"].stringValue
                     let openDt = movie["openDt"].stringValue
                     let data = MovieRankData(rank: rank, movieNm: movieNm, openDt: openDt)
+                    self.movieTitles.append(movieNm)
+                    self.movieRankings.append(rank)
+                    self.movieRealeaseDate.append(openDt)
                     self.movies.append(data)
+                }
+                
+                let task = LocalOnlyQsTask(rankingDate: self.searchDate, title: self.movieTitles, ranking: self.movieRankings, releaseDate: self.movieRealeaseDate)
+                try! self.localRealm.write {
+                    self.localRealm.add(task)
                 }
                 
                 self.rankingTableView.reloadData()
@@ -48,12 +57,14 @@ class MovieRankingViewController: UIViewController {
                 print(error)
             }
         }
-
+        
     }
     
+    var movieTitles: List<String> = List()
+    var movieRankings: List<String> = List()
+    var movieRealeaseDate: List<String> = List()
 
-    @IBAction func searchButtonClicked(_ sender: UIButton) {
-    }
+
     
     @IBOutlet weak var searchBar: UISearchBar!
 }
@@ -62,7 +73,59 @@ class MovieRankingViewController: UIViewController {
 extension MovieRankingViewController: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("ASDf")
+        if let searchedword = searchBar.text{
+            if let specificPerson = localRealm.object(ofType: LocalOnlyQsTask.self, forPrimaryKey: searchedword){
+                movies = []
+                movieTitles.removeAll()
+                movieRankings.removeAll()
+                movieRealeaseDate.removeAll()
+
+                for index in specificPerson.title.indices{
+                    let tmp = MovieRankData(rank: specificPerson.ranking[index], movieNm: specificPerson.title[index], openDt: specificPerson.releaseDate[index])
+                    
+                    movies.append(tmp)
+                }
+                self.rankingTableView.reloadData()
+                
+                
+            }else{
+                
+                    movies = []
+                    movieTitles.removeAll()
+                    movieRankings.removeAll()
+                    movieRealeaseDate.removeAll()
+                    let url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=deb3caf441295e781d5f5ae4c155a5aa&targetDt=\(searchDate)"
+                    
+                    AF.request(url, method: .get).validate().responseJSON { response in
+                        switch response.result {
+                        case .success(let value):
+                            let json = JSON(value)
+            //                print("JSON: \(json)")
+                            
+                            for movie in json["boxOfficeResult"]["dailyBoxOfficeList"].arrayValue{
+                                let rank = movie["rank"].stringValue
+                                let movieNm = movie["movieNm"].stringValue
+                                let openDt = movie["openDt"].stringValue
+                                let data = MovieRankData(rank: rank, movieNm: movieNm, openDt: openDt)
+                                self.movieTitles.append(movieNm)
+                                self.movieRankings.append(rank)
+                                self.movieRealeaseDate.append(openDt)
+                                self.movies.append(data)
+                            }
+                            
+                            let task = LocalOnlyQsTask(rankingDate: self.searchDate, title: self.movieTitles, ranking: self.movieRankings, releaseDate: self.movieRealeaseDate)
+                            try! self.localRealm.write {
+                                self.localRealm.add(task)
+                            }
+                            
+                            self.rankingTableView.reloadData()
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
+                }
+        }
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
