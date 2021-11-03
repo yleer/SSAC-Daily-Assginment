@@ -26,4 +26,5 @@
        <br />
 11.2
       - Add Realm Data base to Shopping List Project.
-      - Created storyboards to each of the tab controllers in Trend Media.
+      - Add Realm Data base to Ranking VC in TrendMedia.
+      
