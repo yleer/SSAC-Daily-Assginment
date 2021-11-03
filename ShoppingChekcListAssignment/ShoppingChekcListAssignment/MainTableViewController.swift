@@ -11,7 +11,11 @@ import RealmSwift
 class MainTableViewController: UITableViewController {
     
     let localRealm = try! Realm()
-    var tasks: Results<ShoppingData>!
+    var tasks: Results<ShoppingData>!{
+        didSet{
+            tableView.reloadData()
+        }
+    }
     
     var selectedCheck : [Int] = []
     var selectedBooked : [Int] = []
@@ -40,6 +44,39 @@ class MainTableViewController: UITableViewController {
         saveDate()
     }
     
+    
+    
+    @IBAction func searchSetting(_ sender: UIBarButtonItem) {
+        let realm = try! Realm()
+        // Access all dogs in the realm
+        let shoppingList = realm.objects(ShoppingData.self)
+        
+        let alertVc = UIAlertController(title: "정렬방식을 골라주세요.", message: "이름, 만든 날짜, 쇼핑 확인 여부.", preferredStyle: .alert)
+        
+        let sortByName = UIAlertAction(title: "이름으로 정렬", style: .default) { _ in
+            self.tasks = shoppingList.sorted(byKeyPath: "shoppingItem", ascending: false)
+            
+        }
+        let sortByDate = UIAlertAction(title: "날짜로 정렬", style: .default) { _ in
+            self.tasks = shoppingList.sorted(byKeyPath: "createdDate", ascending: false)
+            
+        }
+        let sortByDone = UIAlertAction(title: "완료 여부 정렬", style: .default) { _ in
+            self.tasks = shoppingList.sorted(byKeyPath: "done", ascending: false)
+            
+        }
+        
+
+        let cancelButton = UIAlertAction(title: "취소", style: .cancel)
+        
+        alertVc.addAction(sortByName)
+        alertVc.addAction(sortByDate)
+        alertVc.addAction(sortByDone)
+        alertVc.addAction(cancelButton)
+        
+        present(alertVc, animated: true, completion: nil)
+        
+    }
     func saveDate(){
         if let shopItem = shoppingTextField.text{
             if shopItem.count != 0{
@@ -57,10 +94,32 @@ class MainTableViewController: UITableViewController {
         
         tasks = tasks.sorted(byKeyPath: "createdDate", ascending: false)
         
+        
         tableView.reloadData()
     }
     
+    @objc func chekcButtonClicked(_ sender: UIButton){
+        let taskToUpdate = tasks[sender.tag]
+        print(taskToUpdate.special)
+        try! localRealm.write {
+            taskToUpdate.done = !taskToUpdate.done
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
+    @objc func specialButtonClicked(_ sender: UIButton){
+        // 아래 라움에서 코드 가져와서 고쳐 update하는거.
+        let taskToUpdate = tasks[sender.tag]
+        print(taskToUpdate.special)
+        try! localRealm.write {
+            taskToUpdate.special = !taskToUpdate.special
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
     
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -76,9 +135,26 @@ class MainTableViewController: UITableViewController {
         cell.containerView.layer.cornerRadius = 10
         cell.shoppingContentList.text = tasks[indexPath.row].shoppingItem
         
-
+        cell.starButton.addTarget(self, action: #selector(specialButtonClicked), for: .touchUpInside)
+        cell.checkBoxButton.addTarget(self, action: #selector(chekcButtonClicked), for: .touchUpInside)
+        
+        
+        
+        
         cell.checkBoxButton.tag = indexPath.row
         cell.starButton.tag = indexPath.row
+        
+        if tasks[indexPath.row].special{
+            cell.starButton.imageView?.image = UIImage(systemName: "star.fill")
+        }else{
+            cell.starButton.imageView?.image = UIImage(systemName: "star")
+        }
+        
+        if tasks[indexPath.row].done{
+            cell.checkBoxButton.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
+        }else{
+            cell.checkBoxButton.imageView?.image = UIImage(systemName: "checkmark.circle")
+        }
         
         
         
@@ -88,6 +164,19 @@ class MainTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         80
+    }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        true
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        try! localRealm.write{
+            // Realm에서만 삭제한거임. -> 이미지 url에 찾아가 이미지도 직접 삭제해야됨.
+            localRealm.delete(tasks[indexPath.row])
+            tableView.reloadData()
+        }
     }
 
 }

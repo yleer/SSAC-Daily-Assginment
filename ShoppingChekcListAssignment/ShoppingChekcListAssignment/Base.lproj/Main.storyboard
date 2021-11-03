@@ -81,7 +81,7 @@
                                                         <constraint firstAttribute="width" secondItem="wcd-9l-Dtc" secondAttribute="height" multiplier="1:1" id="3RS-ch-8QO"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
-                                                    <buttonConfiguration key="configuration" style="plain" image="checkmark.square" catalog="system"/>
+                                                    <buttonConfiguration key="configuration" style="plain" image="checkmark.circle" catalog="system"/>
                                                     <connections>
                                                         <action selector="checkButtonClicked:" destination="jcg-aL-cy0" eventType="touchUpInside" id="Cl1-9y-Efr"/>
                                                     </connections>
@@ -139,7 +139,13 @@
                             <outlet property="delegate" destination="j5d-qp-VB7" id="3ba-W9-af5"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="쇼핑" id="7i5-gx-NNI"/>
+                    <navigationItem key="navigationItem" title="쇼핑" id="7i5-gx-NNI">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="F3R-6V-cWh">
+                            <connections>
+                                <action selector="searchSetting:" destination="j5d-qp-VB7" id="0CD-Lr-TrN"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="hJn-tx-1XD" id="elK-31-oOJ"/>
                         <outlet property="headerContainerView" destination="XMI-Kd-Ryx" id="03N-kc-9bV"/>
@@ -170,7 +176,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark.square" catalog="system" width="128" height="114"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="121"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">

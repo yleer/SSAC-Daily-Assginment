@@ -11,7 +11,10 @@ import RealmSwift
 class ShoppingData: Object {
     @Persisted var shoppingItem: String = ""
     @Persisted var createdDate = Date()
-    var a = "ADfasdfasdf"
+    @Persisted var done = false
+    @Persisted var special = false
+    
+
     convenience init(item: String, currentDate: Date) {
         self.init()
         self.shoppingItem = item
