@@ -2,7 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="oty-Km-dSw">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -140,11 +142,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="쇼핑" id="7i5-gx-NNI">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="F3R-6V-cWh">
-                            <connections>
-                                <action selector="searchSetting:" destination="j5d-qp-VB7" id="0CD-Lr-TrN"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Filter" id="F3R-6V-cWh">
+                                <connections>
+                                    <action selector="searchSetting:" destination="j5d-qp-VB7" id="0CD-Lr-TrN"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Settings" id="85J-3v-yGJ">
+                                <connections>
+                                    <segue destination="aGq-1o-Hg7" kind="show" id="eRZ-He-qd7"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="hJn-tx-1XD" id="elK-31-oOJ"/>
@@ -154,7 +163,75 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wnQ-Or-KZk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="501.44927536231887" y="-206.25"/>
+            <point key="canvasLocation" x="212" y="-206"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="Ubc-Fj-tMu">
+            <objects>
+                <viewController id="aGq-1o-Hg7" customClass="SettingViewController" customModule="ShoppingChekcListAssignment" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="F55-R2-3Y8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odH-Cx-Wm1">
+                                <rect key="frame" x="20" y="108" width="374" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="ADc-SN-GCL"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="백업">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="40"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="backUpButtonClicked:" destination="aGq-1o-Hg7" eventType="touchUpInside" id="kMe-KR-ll6"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDY-bb-iwA">
+                                <rect key="frame" x="20" y="248" width="374" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="97m-R4-554"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="shareButtonClicked:" destination="aGq-1o-Hg7" eventType="touchUpInside" id="cQ3-pN-iu4"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aFf-er-q81">
+                                <rect key="frame" x="20" y="368" width="374" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="150" id="gS9-8p-GdT"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="복구하기">
+                                    <fontDescription key="titleFontDescription" type="system" pointSize="30"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="restoreButtonClicked:" destination="aGq-1o-Hg7" eventType="touchUpInside" id="kWk-Tm-05j"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Sng-pB-4D4"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="odH-Cx-Wm1" firstAttribute="leading" secondItem="Sng-pB-4D4" secondAttribute="leading" constant="20" id="8Y1-c7-2zK"/>
+                            <constraint firstItem="QDY-bb-iwA" firstAttribute="top" secondItem="odH-Cx-Wm1" secondAttribute="bottom" constant="20" id="Dap-9u-gOe"/>
+                            <constraint firstItem="Sng-pB-4D4" firstAttribute="trailing" secondItem="QDY-bb-iwA" secondAttribute="trailing" constant="20" id="NQ9-jw-drg"/>
+                            <constraint firstItem="odH-Cx-Wm1" firstAttribute="top" secondItem="Sng-pB-4D4" secondAttribute="top" constant="20" id="Rh6-Kl-dxL"/>
+                            <constraint firstItem="aFf-er-q81" firstAttribute="leading" secondItem="Sng-pB-4D4" secondAttribute="leading" constant="20" id="WUc-Df-VfC"/>
+                            <constraint firstItem="Sng-pB-4D4" firstAttribute="trailing" secondItem="odH-Cx-Wm1" secondAttribute="trailing" constant="20" id="b4s-x5-dKu"/>
+                            <constraint firstItem="Sng-pB-4D4" firstAttribute="trailing" secondItem="aFf-er-q81" secondAttribute="trailing" constant="20" id="bFr-t4-5or"/>
+                            <constraint firstItem="QDY-bb-iwA" firstAttribute="leading" secondItem="Sng-pB-4D4" secondAttribute="leading" constant="20" id="cXX-hi-JCP"/>
+                            <constraint firstItem="aFf-er-q81" firstAttribute="top" secondItem="QDY-bb-iwA" secondAttribute="bottom" constant="20" id="nuC-DG-M9T"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="lFY-zM-Zpe"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mar-pT-eaN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1089.8550724637682" y="-206.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ITW-of-PY2">

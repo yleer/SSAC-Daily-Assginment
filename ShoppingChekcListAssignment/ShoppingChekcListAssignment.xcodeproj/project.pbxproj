@@ -18,6 +18,8 @@
 		8864CE642716CBC80093F2EC /* MainTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864CE632716CBC80093F2EC /* MainTableViewController.swift */; };
 		8864CE662716CD050093F2EC /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8864CE652716CD050093F2EC /* ListTableViewCell.swift */; };
 		88A58F6127180127004DDF0D /* CheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88A58F6027180127004DDF0D /* CheckList.swift */; };
+		88EE6A352733C62600F988F0 /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 88EE6A342733C62600F988F0 /* Zip */; };
+		88EE6A372733C81C00F988F0 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88EE6A362733C81C00F988F0 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,7 @@
 		8864CE632716CBC80093F2EC /* MainTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewController.swift; sourceTree = "<group>"; };
 		8864CE652716CD050093F2EC /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		88A58F6027180127004DDF0D /* CheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckList.swift; sourceTree = "<group>"; };
+		88EE6A362733C81C00F988F0 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +42,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				88EE6A352733C62600F988F0 /* Zip in Frameworks */,
 				8842C1D12731419C002005C5 /* RealmSwift in Frameworks */,
 				8842C1CF2731419C002005C5 /* Realm in Frameworks */,
 			);
@@ -84,6 +88,7 @@
 				8864CE582716CAB50093F2EC /* Assets.xcassets */,
 				8864CE5A2716CAB50093F2EC /* LaunchScreen.storyboard */,
 				8864CE5D2716CAB50093F2EC /* Info.plist */,
+				88EE6A362733C81C00F988F0 /* SettingViewController.swift */,
 			);
 			path = ShoppingChekcListAssignment;
 			sourceTree = "<group>";
@@ -107,6 +112,7 @@
 			packageProductDependencies = (
 				8842C1CE2731419C002005C5 /* Realm */,
 				8842C1D02731419C002005C5 /* RealmSwift */,
+				88EE6A342733C62600F988F0 /* Zip */,
 			);
 			productName = ShoppingChekcListAssignment;
 			productReference = 8864CE4C2716CAB20093F2EC /* ShoppingChekcListAssignment.app */;
@@ -138,6 +144,7 @@
 			mainGroup = 8864CE432716CAB10093F2EC;
 			packageReferences = (
 				8842C1CD2731419C002005C5 /* XCRemoteSwiftPackageReference "realm-cocoa" */,
+				88EE6A332733C62500F988F0 /* XCRemoteSwiftPackageReference "Zip" */,
 			);
 			productRefGroup = 8864CE4D2716CAB20093F2EC /* Products */;
 			projectDirPath = "";
@@ -171,6 +178,7 @@
 				8864CE662716CD050093F2EC /* ListTableViewCell.swift in Sources */,
 				88A58F6127180127004DDF0D /* CheckList.swift in Sources */,
 				8864CE642716CBC80093F2EC /* MainTableViewController.swift in Sources */,
+				88EE6A372733C81C00F988F0 /* SettingViewController.swift in Sources */,
 				8864CE522716CAB20093F2EC /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -403,6 +411,14 @@
 				kind = branch;
 			};
 		};
+		88EE6A332733C62500F988F0 /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -415,6 +431,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 8842C1CD2731419C002005C5 /* XCRemoteSwiftPackageReference "realm-cocoa" */;
 			productName = RealmSwift;
+		};
+		88EE6A342733C62600F988F0 /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 88EE6A332733C62500F988F0 /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
