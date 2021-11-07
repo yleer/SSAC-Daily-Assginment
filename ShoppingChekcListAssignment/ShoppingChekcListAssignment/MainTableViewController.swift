@@ -26,14 +26,11 @@ class MainTableViewController: UITableViewController {
     @IBOutlet weak var headerContainerView: UIView!
     @IBOutlet weak var addButton: UIButton!
     
-
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadData()
         headerContainerView.layer.cornerRadius = 20
         addButton.layer.cornerRadius = 20
-        
     }
   
     @IBAction func shoppingListEndEditing(_ sender: UITextField) {
@@ -43,8 +40,6 @@ class MainTableViewController: UITableViewController {
     @IBAction func addToList(_ sender: UIButton) {
         saveDate()
     }
-    
-    
     
     @IBAction func searchSetting(_ sender: UIBarButtonItem) {
         let realm = try! Realm()
@@ -94,18 +89,17 @@ class MainTableViewController: UITableViewController {
         
         tasks = tasks.sorted(byKeyPath: "createdDate", ascending: false)
         
-        
         tableView.reloadData()
     }
     
     @objc func chekcButtonClicked(_ sender: UIButton){
         let taskToUpdate = tasks[sender.tag]
-        print(taskToUpdate.special)
+        print(taskToUpdate.done)
         try! localRealm.write {
             taskToUpdate.done = !taskToUpdate.done
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
         }
     }
     
@@ -115,9 +109,9 @@ class MainTableViewController: UITableViewController {
         print(taskToUpdate.special)
         try! localRealm.write {
             taskToUpdate.special = !taskToUpdate.special
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadRows(at: [IndexPath(row: sender.tag, section: 0)], with: .automatic)
         }
     }
     
@@ -136,24 +130,26 @@ class MainTableViewController: UITableViewController {
         cell.shoppingContentList.text = tasks[indexPath.row].shoppingItem
         
         cell.starButton.addTarget(self, action: #selector(specialButtonClicked), for: .touchUpInside)
+        cell.starButton.setTitle("", for: .normal)
         cell.checkBoxButton.addTarget(self, action: #selector(chekcButtonClicked), for: .touchUpInside)
-        
+        cell.checkBoxButton.setTitle("", for: .normal)
         
         
         
         cell.checkBoxButton.tag = indexPath.row
         cell.starButton.tag = indexPath.row
         
+        print(tasks[indexPath.row].special,tasks[indexPath.row].done)
         if tasks[indexPath.row].special{
-            cell.starButton.imageView?.image = UIImage(systemName: "star.fill")
+            cell.starButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
         }else{
-            cell.starButton.imageView?.image = UIImage(systemName: "star")
+            cell.starButton.setImage(UIImage(systemName: "star"), for: .normal)
         }
         
         if tasks[indexPath.row].done{
-            cell.checkBoxButton.imageView?.image = UIImage(systemName: "checkmark.circle.fill")
+            cell.checkBoxButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
         }else{
-            cell.checkBoxButton.imageView?.image = UIImage(systemName: "checkmark.circle")
+            cell.checkBoxButton.setImage(UIImage(systemName: "checkmark.circle"), for: .normal)
         }
         
         
@@ -170,7 +166,6 @@ class MainTableViewController: UITableViewController {
         true
     }
     
-    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         try! localRealm.write{
             // Realm에서만 삭제한거임. -> 이미지 url에 찾아가 이미지도 직접 삭제해야됨.
@@ -178,5 +173,4 @@ class MainTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-
 }

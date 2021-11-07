@@ -13,6 +13,11 @@ import RealmSwift
 
 class MovieRankingViewController: UIViewController {
     let localRealm = try! Realm()
+    var movieTitles: List<String> = List()
+    var movieRankings: List<String> = List()
+    var movieRealeaseDate: List<String> = List()
+
+    @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var rankingTableView: UITableView!
     var searchDate: String = "20200427"{
         didSet{
@@ -66,7 +71,7 @@ class MovieRankingViewController: UIViewController {
         
     }
     
-    func network(){
+    func network() {
         let url = "https://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key=deb3caf441295e781d5f5ae4c155a5aa&targetDt=\(searchDate)"
         
         AF.request(url, method: .get).validate().responseJSON { response in
@@ -99,16 +104,10 @@ class MovieRankingViewController: UIViewController {
             }
         }
     }
-    
-    var movieTitles: List<String> = List()
-    var movieRankings: List<String> = List()
-    var movieRealeaseDate: List<String> = List()
-
-    @IBOutlet weak var searchBar: UISearchBar!
 }
 
 
-extension MovieRankingViewController: UISearchBarDelegate{
+extension MovieRankingViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let searchedword = searchBar.text{
@@ -123,7 +122,6 @@ extension MovieRankingViewController: UISearchBarDelegate{
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(true, animated: true)
     }
-    
 }
 
 extension MovieRankingViewController: UITableViewDelegate, UITableViewDataSource{
@@ -150,5 +148,4 @@ extension MovieRankingViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         70
     }
-    
 }
